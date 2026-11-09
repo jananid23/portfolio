@@ -147,6 +147,31 @@ h2{font-size:clamp(29px,4.4vw,42px);letter-spacing:-1.4px;font-weight:790;margin
 
 /* projects */
 .pg{display:grid;gap:20px}
+.pcin{display:grid;grid-template-columns:190px 1fr;gap:28px;align-items:start}
+.viz{width:190px;height:140px;border-radius:14px;background:var(--bg);
+     border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;
+     color:var(--acc);flex-shrink:0;transition:.4s var(--ease)}
+.pc:hover .viz{border-color:var(--acc);transform:scale(1.02)}
+.viz svg{width:100%;height:100%}
+/* dots settle into clusters */
+.vd{opacity:0;transform-origin:center;animation:pop .5s var(--ease) forwards}
+.pc.in .vd{animation-delay:calc(var(--i)*70ms)}
+@keyframes pop{to{opacity:1}}
+.vring{opacity:0;transform-box:fill-box;transform-origin:center;
+       animation:ring .9s var(--ease) forwards .55s}
+@keyframes ring{from{opacity:0;transform:scale(.4)}to{opacity:.9;transform:scale(1)}}
+/* route line draws */
+.vline{stroke-dasharray:260;stroke-dashoffset:260;animation:draw 1.9s var(--ease) forwards .3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+/* travelling pulse */
+.vpulse{animation:trav 3.2s linear infinite 1.4s}
+@keyframes trav{0%{opacity:0}8%{opacity:1}92%{opacity:1}100%{opacity:0}}
+.vbreathe{animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.45}}
+.nda{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:12.6px;
+     color:var(--mut);background:var(--bg);border:1px dashed var(--line);
+     padding:6px 14px;border-radius:999px;font-weight:500}
+.nda b{color:var(--fg);font-weight:650}
 .pc{background:var(--soft);border:1px solid var(--line);border-radius:22px;padding:32px;
     transition:transform .35s var(--ease),box-shadow .35s,border-color .35s;
     position:relative;overflow:hidden;transform-style:preserve-3d}
@@ -211,6 +236,8 @@ html[data-theme="dark"] .hint.ok{color:#4ade80}
   section{padding:62px 0}
   h1{letter-spacing:-1.4px}
   .pc{padding:25px}
+  .pcin{grid-template-columns:1fr;gap:20px}
+  .viz{width:100%;height:120px}
   .row{grid-template-columns:1fr;gap:10px;padding:18px 20px}
   .arw{transform:scale(1) rotate(90deg);justify-self:start}
   .row.in .arw{animation:none;transform:rotate(90deg)}
@@ -350,6 +377,24 @@ html[data-theme="dark"] .hint.ok{color:#4ade80}
   <h2 class="rv" style="--d:60ms">Problems I've solved</h2>
   <div class="pg">
     <div class="pc rv"><span class="spot"></span>
+      <div class="pcin">
+      <div class="viz"><svg viewBox="0 0 190 140" fill="none" aria-hidden="true">
+  <path class="vline" d="M34 30 C 70 44, 78 60, 95 104" stroke="currentColor" stroke-width="1.4" opacity=".45"/>
+  <path class="vline" d="M150 26 C 128 50, 118 66, 95 104" stroke="currentColor" stroke-width="1.4" opacity=".45" style="animation-delay:.5s"/>
+  <path class="vline" d="M24 74 C 48 84, 64 94, 95 104" stroke="currentColor" stroke-width="1.4" opacity=".45" style="animation-delay:.7s"/>
+  <path class="vline" d="M164 76 C 142 88, 122 96, 95 104" stroke="currentColor" stroke-width="1.4" opacity=".45" style="animation-delay:.9s"/>
+  <circle class="vd" style="--i:0" cx="34" cy="30" r="5.5" fill="currentColor" opacity=".8"/>
+  <circle class="vd" style="--i:1" cx="150" cy="26" r="5.5" fill="currentColor" opacity=".8"/>
+  <circle class="vd" style="--i:2" cx="24" cy="74" r="5.5" fill="currentColor" opacity=".8"/>
+  <circle class="vd" style="--i:3" cx="164" cy="76" r="5.5" fill="currentColor" opacity=".8"/>
+  <circle class="vbreathe" cx="95" cy="104" r="17" fill="currentColor" opacity=".13"/>
+  <circle cx="95" cy="104" r="9" fill="currentColor"/>
+  <circle r="3.5" fill="currentColor" class="vpulse">
+    <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.4s"
+      path="M34 30 C 70 44, 78 60, 95 104"/>
+  </circle>
+</svg></div>
+      <div class="pcc">
       <div class="tagline">Dairy logistics</div>
       <h3>Getting milk to the plant before it spoils</h3>
       <p>Milk collection vans were being routed by hand, with no record of which van picked up from
@@ -357,8 +402,30 @@ html[data-theme="dark"] .hint.ok{color:#4ade80}
       is and how much it can carry, then sends it to the best chilling centre — all within the time
       window before the milk goes off. The client approved it for rollout.</p>
       <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">Google Maps</span></div>
+      <div class="nda">🔒 <b>Client project</b> — source under NDA</div>
+      </div></div>
     </div>
     <div class="pc rv" style="--d:90ms"><span class="spot"></span>
+      <div class="pcin">
+      <div class="viz"><svg viewBox="0 0 190 140" fill="none" aria-hidden="true">
+  <circle class="vring" cx="52" cy="44" r="30" stroke="currentColor" stroke-width="1.3" stroke-dasharray="4 4" opacity=".5"/>
+  <circle class="vring" cx="136" cy="54" r="26" stroke="currentColor" stroke-width="1.3" stroke-dasharray="4 4" opacity=".5" style="animation-delay:.75s"/>
+  <circle class="vring" cx="88" cy="106" r="24" stroke="currentColor" stroke-width="1.3" stroke-dasharray="4 4" opacity=".5" style="animation-delay:.95s"/>
+  <circle class="vd" style="--i:0" cx="40" cy="34" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:1" cx="62" cy="38" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:2" cx="46" cy="56" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:3" cx="64" cy="58" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:4" cx="128" cy="44" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:5" cx="146" cy="52" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:6" cx="132" cy="64" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:7" cx="78" cy="98" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:8" cx="96" cy="102" r="4" fill="currentColor"/>
+  <circle class="vd" style="--i:9" cx="86" cy="116" r="4" fill="currentColor"/>
+  <circle class="vbreathe" cx="52" cy="44" r="7" fill="currentColor" opacity=".25"/>
+  <circle class="vbreathe" cx="136" cy="54" r="7" fill="currentColor" opacity=".25" style="animation-delay:1s"/>
+  <circle class="vbreathe" cx="88" cy="106" r="7" fill="currentColor" opacity=".25" style="animation-delay:.5s"/>
+</svg></div>
+      <div class="pcc">
       <div class="tagline">Campus &amp; delivery transport</div>
       <h3>Shuttle routes that adapt to who actually shows up</h3>
       <p>College van routes were fixed, even though attendance changes every day — so half-empty
@@ -366,14 +433,29 @@ html[data-theme="dark"] .hint.ok{color:#4ade80}
       regroups the stops and vehicles to match. The same approach now handles delivery routing,
       cutting the number of vehicles needed per run.</p>
       <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">OR-Tools</span><span class="chip">Clustering</span></div>
+      <div class="nda">🔒 <b>Client project</b> — source under NDA</div>
+      </div></div>
     </div>
     <div class="pc rv" style="--d:180ms"><span class="spot"></span>
+      <div class="pcin">
+      <div class="viz"><svg viewBox="0 0 190 140" fill="none" aria-hidden="true">
+  <line x1="18" y1="118" x2="172" y2="118" stroke="currentColor" stroke-width="1" opacity=".3"/>
+  <line x1="18" y1="118" x2="18" y2="24" stroke="currentColor" stroke-width="1" opacity=".3"/>
+  <path class="vline" d="M22 98 L40 92 L56 100 L72 86 L88 94 L104 52 L118 88 L134 80 L150 92 L166 84"
+        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="vbreathe" cx="104" cy="52" r="12" fill="currentColor" opacity=".16"/>
+  <circle class="vd" style="--i:6" cx="104" cy="52" r="5" fill="currentColor"/>
+  <line x1="104" y1="60" x2="104" y2="118" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity=".4"/>
+</svg></div>
+      <div class="pcc">
       <div class="tagline">Scientific research</div>
       <h3>Predicting the atmosphere during solar storms</h3>
       <p>Using real scientific datasets, I built a model that forecasts how Earth's upper atmosphere
       behaves during solar flares, storms and earthquakes — with clear plots and trend graphs that
       make the patterns readable rather than just accurate.</p>
       <div class="chips"><span class="chip">Python</span><span class="chip">Time-series</span><span class="chip">Regression</span></div>
+      <div class="nda">🔒 <b>Client project</b> — source under NDA</div>
+      </div></div>
     </div>
   </div>
 </div></section>
